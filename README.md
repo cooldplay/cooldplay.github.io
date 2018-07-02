@@ -1,121 +1,335 @@
-# Poole
+# whiteglass
 
-*The Strange Case of Dr. Jekyll and Mr. Hyde* tells the story of a lawyer investigating the connection of two persons, Dr. Henry Jekyll and Mr. Edward Hyde. Chief among the novel's supporting cast is a man by the name of Mr. Poole, Dr. Jekyll's loyal butler.
+[![Gem Version](https://badge.fury.io/rb/jekyll-whiteglass.svg)](https://badge.fury.io/rb/jekyll-whiteglass)
+[![Build Status](https://travis-ci.org/yous/whiteglass.svg?branch=master)](https://travis-ci.org/yous/whiteglass)
 
------
+Minimal, responsive Jekyll theme for hackers.
 
-Poole is the butler for [Jekyll](http://jekyllrb.com), the static site generator. It's designed and developed by [@mdo](https://twitter.com/mdo) to provide a clear and concise foundational setup for any Jekyll site. It does so by furnishing a full vanilla Jekyll install with example templates, pages, posts, and styles.
+![whiteglass theme](screenshot.png)
 
-![Poole](https://f.cloud.github.com/assets/98681/1834359/71ae4048-73db-11e3-9a3c-df38eb170537.png)
+## Installation
 
-See Poole in action with [the demo site](http://demo.getpoole.com).
+Add this line to your Jekyll site's Gemfile:
 
-There are currently two official themes built on Poole:
+``` ruby
+gem "jekyll-whiteglass"
+```
 
-* [Hyde](http://hyde.getpoole.com)
-* [Lanyon](http://lanyon.getpoole.com)
+And add this line to your Jekyll site's `_config.yml`:
 
-Individual theme feedback and bug reports should be submitted to the theme's individual repository.
+``` yaml
+theme: jekyll-whiteglass
+```
 
+And then execute:
 
-## Contents
+``` sh
+bundle
+```
 
-- [Usage](#usage)
-- [Options](#options)
-  - [Rems, `font-size`, and scaling](#rems-font-size-and-scaling)
-- [Development](#development)
-- [Author](#author)
-- [License](#license)
+Or install it yourself as:
 
+``` sh
+gem install jekyll-whiteglass
+```
+
+## Quick Start
+
+1. Generate a new Jekyll blog:
+
+   ``` sh
+   jekyll new blog --skip-bundle
+   cd blog
+   ```
+
+2. Edit `Gemfile` to use whiteglass theme:
+
+   ``` ruby
+   gem "jekyll-whiteglass"
+   ```
+
+3. Edit `_config.yml` to use whiteglass theme and its plugins:
+
+   ``` yaml
+   theme: jekyll-whiteglass
+   plugins:
+     - jekyll-archives
+     - jekyll-paginate
+     - jekyll-sitemap
+
+   permalink: /:year/:month/:day/:title/
+   paginate_path: /posts/:num/
+   paginate: 5
+
+   jekyll-archives:
+     enabled:
+       - categories
+       - tags
+     layout: category_archives
+     permalinks:
+       category: /categories/:name/
+       tag: /tags/:name/
+   ```
+
+4. Copy
+   [`index.html`](https://github.com/yous/whiteglass/blob/master/index.html),
+   [`about.md`](https://github.com/yous/whiteglass/blob/master/about.md),
+   [`archives.md`](https://github.com/yous/whiteglass/blob/master/archives.md),
+   [`feed.xml`](https://github.com/yous/whiteglass/blob/master/feed.xml), and
+   [`_data/navigation.yml`](https://github.com/yous/whiteglass/blob/master/_data/navigation.yml)
+   from the theme:
+
+   ``` sh
+   rm index.md
+   curl -L -O "https://github.com/yous/whiteglass/raw/master/{index.html,about.md,archives.md,feed.xml}"
+   curl -L --create-dirs -o _data/navigation.yml https://github.com/yous/whiteglass/raw/master/_data/navigation.yml
+   ```
+
+5. Install gems and you're good to go! The blog will be available on
+   `http://127.0.0.1:4000`.
+
+   ``` sh
+   bundle install
+   bundle exec jekyll serve
+   ```
 
 ## Usage
 
-### 1. Install dependencies
+### Customization
 
-Poole is built on Jekyll and uses its built-in SCSS compiler to generate our CSS. Before getting started, you'll need to install the Jekyll gem:
+To override the default structure and style of whiteglass, simply create the
+concerned directory at the root of your site, copy the file you wish to
+customize to that directory, and then edit the file. e.g., to override the
+[`_includes/footer_content.html`](_includes/footer_content.html) file to add
+contents to footer, create an `_includes` directory, copy
+`_includes/footer_content.html` from jekyll-whiteglass gem folder to
+`<your-site>/_includes` and start editing that file.
 
-```bash
-$ gem install jekyll
+For example, you can add favicons to `_includes/head_custom.html`:
+
+``` html
+<link rel="icon" type="image/x-icon" href="{{ "/favicon.ico" | relative_url }}">
+<link rel="apple-touch-icon" href="{{ "/apple-touch-icon.png" | relative_url }}">
+<link rel="apple-touch-icon" sizes="76x76" href="{{ "/apple-touch-icon-76x76.png" | relative_url }}">
+<link rel="apple-touch-icon" sizes="120x120" href="{{ "/apple-touch-icon-120x120.png" | relative_url }}">
+<link rel="apple-touch-icon" sizes="152x152" href="{{ "/apple-touch-icon-152x152.png" | relative_url }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ "/apple-touch-icon-180x180.png" | relative_url }}">
 ```
 
-**Windows users:** Windows users have a bit more work to do, but luckily [@juthilo](https://github.com/juthilo) has your back with his [Run Jekyll on Windows](https://github.com/juthilo/run-jekyll-on-windows) guide.
+The site's default CSS is in the gem itself,
+[`assets/main.scss`](assets/main.scss). To override the default CSS, the file
+has to exist at your site source. Do either of the following:
 
-**Need syntax highlighting?** Poole includes support for Pygments or Rouge, so install your gem of choice to make use of the built-in styling. Read more about this [in the Jekyll docs](http://jekyllrb.com/docs/templates/#code_snippet_highlighting).
+- Create a new instance of `main.scss` at site source
+  - Create a new file `main.scss` at `<your-site>/assets/`
+  - Add the frontmatter dashes, and
+  - Add `@import "whiteglass";`, to `<your-site>/assets/main.scss`
+  - Add your custom CSS
+- Download the file from this repo
+  - Create a new file `main.scss` at `<your-site>/assets/`
+  - Copy the contents at [`assets/main.scss`](assets/main.scss) onto the `main.scss` you just created, and edit away
+- Copy directly from jekyll-whiteglass gem
+  - Go to your local jekyll-whiteglass gem installation directory (run `bundle show jekyll-whiteglass` to get the path to it)
+  - Copy the `assets/` folder from there into the root of `<your-site>`
+  - Change whatever values you want, inside `<your-site>/assets/main.scss`
 
-### 2a. Quick start
+### Locale
 
-To help anyone with any level of familiarity with Jekyll quickly get started, Poole includes everything you need for a basic Jekyll site. To that end, just download Poole and start up Jekyll.
+`site.lang` is used to declare the primary language for each web page within the
+site.
 
-### 2b. Roll your own Jekyll site
+`lang: en-US` sets the `lang` attribute for the site to the United States flavor
+of English, while `en-GB` would be for the United Kingdom style of English.
+Country codes are optional and the shorter variation `lang: en` is also
+acceptable. You may want to write a post in different language, then add `lang`
+attribute to the frontmatter of that post:
 
-Folks wishing to use Jekyll's templates and styles can do so with a little bit of manual labor. Download Poole and then copy what you need (likely `_layouts/`, `*.html` files, `atom.xml` for RSS, and `public/` for CSS, JS, etc.).
-
-### 3. Running locally
-
-To see your Jekyll site with Poole applied, start a Jekyll server. In Terminal, from `/poole` (or whatever your Jekyll site's root directory is named):
-
-```bash
-$ jekyll serve
+``` yaml
+layout: post
+title: "안녕하세요"
+lang: ko
 ```
 
-Open <http://localhost:4000> in your browser, and voilà.
+### Description
 
-### 4. Serving it up
+`site.description` describes the site. This is mainly used in meta descriptions
+for improving SEO. Also, you can set `description` attribute for each post:
 
-If you host your code on GitHub, you can use [GitHub Pages](https://pages.github.com) to host your project.
-
-1. Fork this repo and switch to the `gh-pages` branch.
-  1. If you're [using a custom domain name](https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages), modify the `CNAME` file to point to your new domain.
-  2. If you're not using a custom domain name, **modify the `baseurl` in `_config.yml`** to point to your GitHub Pages URL. Example: for a repo at `github.com/username/poole`, use `http://username.github.io/poole/`. **Be sure to include the trailing slash.**
-3. Done! Head to your GitHub Pages URL or custom domain.
-
-No matter your production or hosting setup, be sure to verify the `baseurl` option file and `CNAME` settings. Not applying this correctly can mean broken styles on your site.
-
-## Options
-
-Poole includes some customizable options, typically applied via classes on the `<body>` element.
-
-
-### Rems, `font-size`, and scaling
-
-Poole is built almost entirely with `rem`s (instead of pixels). `rem`s are like `em`s, but instead of building on the immediate parent's `font-size`, they build on the root element, `<html>`.
-
-By default, we use the following:
-
-```css
-html {
-  font-size: 16px;
-  line-height: 1.5;
-}
-@media (min-width: 38em) {
-  html {
-    font-size: 20px;
-  }
-}
-
+``` yaml
+layout: post
+title: Awesome Post
+description: This is an awesome post.
 ```
 
-To easily scale your site's typography and components, simply customize the base `font-size`s here.
+If you don't specify `post.description`, then `post.excerpt` will be used if it
+exist.
 
+### External URL
+
+`external-url` turns the title of your post to a link. Specify a URL which you
+want to link to.
+
+``` yaml
+layout: post
+title: Jekyll whiteglass theme
+external-url: https://github.com/yous/whiteglass
+```
+
+Then the title of your post would look like a link with text
+`Jekyll whiteglass theme →`. This also applies to your blog feed.
+
+### Category
+
+Each post can have `categories` attribute. It can be a string or an array. This
+will be displayed on index, archive and each post, and provide a link to the
+archive of category.
+
+``` yaml
+layout: post
+title: Awesome Post
+categories: Misc
+```
+
+``` yaml
+layout: post
+title: Another Awesome Post
+categories:
+  - Misc
+  - Idea
+```
+
+### Tag
+
+Each post can have `tags` attribute. It can be a string or an array. This will
+be displayed on index, archive and each post, and provide a link to the archive
+of tag.
+
+``` yaml
+layout: post
+title: Awesome Post
+tags: food
+```
+
+``` yaml
+layout: post
+title: Another Awesome Post
+tags:
+  - food
+  - trip
+```
+
+### Feed
+
+Create `<your-site>/feed.xml` with:
+
+``` yaml
+---
+layout: feed
+---
+```
+
+If you want to use another path for feed, you can specify a non-default path via
+your site's config.
+
+``` yaml
+feed:
+  path: atom.xml
+```
+
+Then create `<your-site>/atom.xml` with the same content of `feed.xml` above.
+
+### Comments
+
+whiteglass provides the ability to include your favourite commenting service, like [Disqus](https://disqus.com) or [Isso](https://posativ.org/isso).
+
+To enable comments on pages and posts:
+1. Overwrite the `_includes/custom_comments_provider.html` with your custom provider of comments.
+2. Add `comments: true` to your `_config.yml`.
+
+To disable comments on certain pages or posts specify `comments: false` in the front matter of the page or post.
+
+### Metadata for SEO
+
+#### Keywords
+
+Each post can have `keywords` attribute. This is a comma-separated list which is
+used in meta descriptions for improving SEO.
+
+``` yaml
+layout: post
+title: How to configure jekyll-whiteglass
+keywords: jekyll, whiteglass, github pages
+```
+
+YAML list is also available:
+
+``` yaml
+keywords:
+  - jekyll
+  - whiteglass
+  - github pages
+```
+
+#### Twitter
+
+- `site.twitter_username` sets `twitter:site` and `twitter:creator` meta tag
+- `site.twitter_image` sets `twitter:image:src` meta tag
+- `page.twitter_card.type` sets `twitter:card` meta tag (default: `summary`)
+  - If `page.twitter_card.type` is `gallery`, it sets `twitter:image0`, `twitter:image1`, `twitter:image2` and `twitter:image3` meta tags with `page.twitter_card.image`, `page.twitter_card.image1`, `page.twitter_card.image2` and `page.twitter_card.image3`, respectively
+  - If `page.twitter_card.type` is `photo`, `page.twitter_card.width` sets `twitter:image:width` meta tag and `page.twitter_card.height` sets `twitter:image:height` meta tag
+- `page.twitter_card.creator` sets `twitter:creator` meta tag. It overrides `site.twitter_username`
+- `page.twitter_card.image` sets `twitter:image:src` meta tag if `page.twitter_card.type` is not `gallery`. It overrides `site.twitter_image`
+
+#### Facebook
+
+- `site.facebook_app_id` sets `fb:admins` meta tag
+- `site.facebook_page` sets `article:author` meta tag
+- `site.facebook_image` sets `og:image` meta tag
+- `page.facebook.image` sets `og:image` meta tag. It overrides `site.facebook_image`
+
+### Navigation
+
+To define header links, add titles and URLs under the `main` key in
+`_data/navigation.yml`:
+
+``` yaml
+main:
+  - title: "About"
+    url: /about/
+  - title: "Archives"
+    url: /archives/
+  - title: "GitHub"
+    url: https://github.com/yous/whiteglass
+```
+
+### Enabling Google Analytics
+
+To enable Google Analytics, add the following lines to your Jekyll site:
+
+``` yaml
+google_analytics: UA-NNNNNNNN-N
+```
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at
+<https://github.com/yous/whiteglass>. This project is intended to be a safe,
+welcoming space for collaboration, and contributors are expected to adhere to
+the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## Development
 
-Poole has two branches, but only one is used for active development.
+To set up your environment to develop this theme, run `bundle install`.
 
-- `master` for development.  **All pull requests should be to submitted against `master`.**
-- `gh-pages` for our hosted site, which includes our analytics tracking code. **Please avoid using this branch.**
-
-CSS is handled via Jeykll's built-in Sass compiler. Source Sass files are located in `_sass/`, included into `styles.scss`, and compile to `styles.css`.
-
-## Author
-
-**Mark Otto**
-- <https://github.com/mdo>
-- <https://twitter.com/mdo>
-
+Your theme is setup just like a normal Jekyll site! To test your theme, run
+`bundle exec jekyll serve` and open your browser at
+`http://localhost:4000/whiteglass/`. This starts a Jekyll server using your
+theme. Add pages, documents, data, etc. like normal to test your theme's
+contents. As you make modifications to your theme and to your content, your site
+will regenerate and you should see the changes in the browser after a refresh,
+just like normal.
 
 ## License
 
-Open sourced under the [MIT license](LICENSE.md).
-
-<3
+The theme is available as open source under the terms of the
+[MIT License](http://opensource.org/licenses/MIT).

@@ -1,33 +1,62 @@
-# Permalinks
-permalink:           pretty
-
-# Setup
 title: 404. identity not found.
-tagline: 정체성 없는 블로그
+author: Seonpil Kim
+description: 정체성 없는 블로그
+
 url: 'https://beoreoji.github.io'
-paginate: 1
 baseurl: ""
+google_analytics: UA-121641219-1
 
-# Assets
-#
-# We specify the directory for Jekyll so we can use @imports.
-sass:
-  sass_dir:          _sass
-  style:            :compressed
+lang: ko
+timezone: Asia/Seoul
 
-# About/contact
-author:
-  name:              Seonpil Kim
-  url:               https://twitter.com/beoreoji
-  email: swag.seonpil@email.com
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - Rakefile
+  - README.md
+  - LICENSE.txt
+  - CHANGELOG.md
+  - jekyll-whiteglass.gemspec
+  - screenshot.png
+  - vendor
 
-# Custom vars
-version:             2.0.0
-github:
-  repo:              https://github.com/poole/poole
+# Social media
+twitter_username:
+twitter_image:
+facebook_app_id:
+facebook_image:
+comments: false
 
+# Plugins
 plugins:
- - jekyll-paginate
- - jekyll-gist
+  - jekyll-archives
+  - jekyll-paginate
+  - jekyll-sitemap
 
-analytics_id: UA-121641219-1
+# Build settings
+markdown: kramdown
+excerpt_separator: "<!-- more -->"
+
+# Outputting
+permalink: /:year/:month/:day/:title/
+paginate_path: /posts/:num/
+paginate: 5
+
+# Markdown settings
+kramdown:
+  auto_ids: false
+  enable_coderay: false
+  entity_output: as_char
+  footnote_nr: 1
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  toc_levels: 1..6
+
+# jekyll-archives
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layout: category_archives
+  permalinks:
+    category: /categories/:name/
+    tag: /tags/:name/
