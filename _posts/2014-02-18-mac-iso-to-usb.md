@@ -15,7 +15,9 @@ USB 스틱의 마운트를 해제한다.
 ```bash
 $ diskutil unmountDisk /dev/disk1
 ```
-
+<ins class="adsbygoogle" style="display:block; text-align:center;" 
+    data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6472474470403321" data-ad-slot="4953204744"></ins>
+    
 ISO 이미지를 USB스틱으로 굽는다. ( sudo 권한 필요 )
 ```
 $ sudo dd if=[ISO이미지경로] of=/dev/rdisk1 bs=1m
