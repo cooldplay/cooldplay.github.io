@@ -14,7 +14,7 @@ pgAdmin 은 PostgresDB 를 GUI 환경으로 접근할 수 있는 가장 강력�
 
 설치는 뭐 별거 없다.
 
-우선, https://www.pgadmin.org/download/pgadmin-4-python-wheel/ 에서 최신버전 다운로드.
+우선, [https://www.pgadmin.org/download/pgadmin-4-python-wheel/](https://www.pgadmin.org/download/pgadmin-4-python-wheel/) 에서 최신버전 다운로드.
 (Home 디렉토리에 저장했다고 가정하겠다.)
 ``` sh
 $ pip install ~/pgadmin4-(버전)-py2.py3-none-any.whl
