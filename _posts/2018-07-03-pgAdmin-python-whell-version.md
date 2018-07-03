@@ -16,13 +16,13 @@ pgAdmin 은 PostgresDB 를 GUI 환경으로 접근할 수 있는 가장 강력�
 
 우선, https://www.pgadmin.org/download/pgadmin-4-python-wheel/ 에서 최신버전 다운로드.
 (Home 디렉토리에 저장했다고 가정하겠다.)
-```
+``` sh
 $ pip install ~/pgadmin4-(버전)-py2.py3-none-any.whl
 ```
 
 설치가 끝나면 실행해 준다.
 
-```
+``` sh
 $ python /usr/local/lib/python(system Python 버전)/site-packages/pgadmin4/pgAdmin4.py
 
 Starting pgAdmin 4. Please navigate to http://127.0.0.1:5050 in your browser.
