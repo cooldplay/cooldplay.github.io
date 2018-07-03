@@ -15,8 +15,6 @@ USB 스틱의 마운트를 해제한다.
 ```bash
 $ diskutil unmountDisk /dev/disk1
 ```
-<ins class="adsbygoogle" style="display:block; text-align:center;" 
-    data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6472474470403321" data-ad-slot="4953204744"></ins>
     
 ISO 이미지를 USB스틱으로 굽는다. ( sudo 권한 필요 )
 ```
@@ -30,3 +28,8 @@ $ diskutil eject /dev/disk1
 ```
 
 다시 마운트를 시켜보면, 깔~끔하게 구워져 있는 USB스틱의 내용을 확인할 수 있을것이다.
+
+
+----
+<ins class="adsbygoogle" style="display:block; text-align:center;" 
+    data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6472474470403321" data-ad-slot="4953204744"></ins>
