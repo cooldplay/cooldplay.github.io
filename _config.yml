@@ -25,7 +25,7 @@ twitter_username:
 twitter_image:
 facebook_app_id:
 facebook_image:
-comments: false
+comments: true
 
 # Plugins
 plugins:
