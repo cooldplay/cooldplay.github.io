@@ -1,5 +1,5 @@
 ---
-title: SSH Keypair 생성하기
+title: SSH Keypair 생성하기 (feat. Ubuntu)
 layout: post
 ---
 
